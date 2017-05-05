@@ -1,0 +1,8 @@
+*.suo
+*.png
+*.pgm
+*.jpg
+*.user
+*.zip
+*.sdf
+NeuralNet01/Debug/
