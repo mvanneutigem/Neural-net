@@ -6,7 +6,6 @@ struct Connection
 {
 	double weight;
 	double deltaWeight;
-
 };
 //clas neuron
 class Neuron
@@ -18,18 +17,15 @@ public:
 	void feedForward(const Layer &prevLayer);
 	void calcOutputGradients(double targetVal);
 	void calcHiddenGradients(const Layer& nextlayer);
-	void updateInputWeights(Layer &prevLayer);
+	void updateInputWeights(Layer &prevLayer) const;
 
 	std::vector<Connection>& getOutputWeights() { return m_outputWeights; };
 private:
-	//static double transferFunction(double x);
 	double(*transferFN)(double) = [](double x) { return tanh(x); };
 	double(*transferFND)(double) = [](double x) {return 1.0 - x*x; };
 	double(*randW)() = []() { return rand() / double(RAND_MAX); };
 
-	//static double transferFunctionDerivative(double x);
-	//static double randomWeight() { return rand() / double(RAND_MAX); }
-	double sumDOW(const Layer &nextlayer) const;
+	double sum(const Layer &nextlayer) const;
 	double m_outputVal =  0.5f;
 	int m_myIndex;
 	std::vector<Connection> m_outputWeights;

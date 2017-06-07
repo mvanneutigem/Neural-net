@@ -5,7 +5,7 @@
 double Neuron::eta = 0.15;//overall learning rate
 double Neuron::alpha = 0.5;
 
-void Neuron::updateInputWeights(Layer &prevLayer)
+void Neuron::updateInputWeights(Layer &prevLayer) const
 {
 	//the weights to be updated are in the connection container in the neurons in the previous layer
 	for (unsigned int n = 0; n < prevLayer.size(); ++n)
@@ -22,44 +22,30 @@ void Neuron::updateInputWeights(Layer &prevLayer)
 	}
 }
 
-double Neuron::sumDOW(const Layer &nextlayer) const
+double Neuron::sum(const Layer &nextlayer) const
 {
+	//hidden layer
 	double sum = 0;
 
-	//sum our contributions of the error nodes we feed
+	//sum contributions of the error nodes fed
 	for (unsigned int n = 0; n < nextlayer.size() - 1; ++n)
 	{
 		sum += m_outputWeights[n].weight * nextlayer[n].m_gradient;
 	}
 	return sum;
 }
-//
-//void Neuron::calcHiddenGradients(const Layer& nextlayer)
-//{
-//	double dow = sumDOW(nextlayer);
-//	m_gradient = dow * transferFND(m_outputVal);
-//}
+
+void Neuron::calcHiddenGradients(const Layer& nextlayer)
+{
+	double dsum = sum(nextlayer);
+	m_gradient = dsum * transferFND(m_outputVal);
+}
 
 void Neuron::calcOutputGradients(double targetVal)
 {
 	double delta = targetVal - m_outputVal;
 	m_gradient = delta * transferFND(m_outputVal);
 }
-
-//double Neuron::transferFunction(double x)
-//{
-//	//make sure to use a curved function (derivative function)
-//	//scale your output -> stay in range!
-//
-//	//tanh - output range[-1.0...1.0]
-//	return tanh(x);
-//}
-
-//double Neuron::transferFunctionDerivative(double x)
-//{
-//	//tanh derivative (approximation)
-//	return 1.0 - x*x;
-//}
 
 void Neuron::feedForward(const Layer &prevLayer)
 {

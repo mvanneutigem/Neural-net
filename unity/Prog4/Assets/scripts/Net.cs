@@ -36,6 +36,10 @@ public class Net //: MonoBehaviour
                     {
                         weight = double.Parse(line, System.Globalization.CultureInfo.InvariantCulture);
                     }
+                    else
+                    {
+                        
+                    }
                     weights.Add(weight);
                 }
                 

@@ -10,7 +10,7 @@ public class Connection
 
     public Connection()
     {
-        weight = 0.5f;
+        weight = 0;
     }
 };
 

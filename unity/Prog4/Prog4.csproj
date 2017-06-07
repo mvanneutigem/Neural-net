@@ -85,6 +85,7 @@
   <ItemGroup>
     <None Include="Assets\resources\finalweights.txt" />
     <None Include="Assets\resources\finalweights2.txt" />
+    <None Include="Assets\resources\finalweights3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

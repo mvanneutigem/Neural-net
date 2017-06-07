@@ -38,7 +38,7 @@ void Net::backProp(const std::vector<double>& targetVals)
 	//RMS = root mean square
 	Layer &outputLayer = m_Layers.back();
 	m_error = 0.0;
-
+	
 	for (unsigned int n = 0; n < outputLayer.size() - 1; ++n)
 	{
 		double delta = targetVals[n] - outputLayer[n].GetOutputValue();
@@ -57,16 +57,16 @@ void Net::backProp(const std::vector<double>& targetVals)
 	}
 
 	//calculate gradients on hidden layers
-	//for (unsigned int layerNum = m_Layers.size() - 2; layerNum > 0; --layerNum)
-	//{
-	//	Layer &hiddenLayer = m_Layers[layerNum];
-	//	Layer &nextLayer = m_Layers[layerNum + 1];
+	for (unsigned int layerNum = m_Layers.size() - 2; layerNum > 0; --layerNum)
+	{
+		Layer &hiddenLayer = m_Layers[layerNum];
+		Layer &nextLayer = m_Layers[layerNum + 1];
 
-	//	for (unsigned int n = 0; n < hiddenLayer.size(); ++n)
-	//	{
-	//		hiddenLayer[n].calcHiddenGradients(nextLayer);
-	//	}
-	//}
+		for (unsigned int n = 0; n < hiddenLayer.size(); ++n)
+		{
+			hiddenLayer[n].calcHiddenGradients(nextLayer);
+		}
+	}
 
 	//for all layers from outputs to first hidden layer: update connection weights
 	for (unsigned int layerNum = m_Layers.size() - 1; layerNum > 0; --layerNum)

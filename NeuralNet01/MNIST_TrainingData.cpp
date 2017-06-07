@@ -42,7 +42,6 @@ unsigned int MNIST_TrainingData::getNextInputs(vector<double> &inputVals)
 		}
 	}
 	++m_InputCounter;
-	//softmax
 
 	return inputVals.size();
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadImage : MonoBehaviour {
 
     public string url = "https://docs.unity3d.com/uploads/Main/ShadowIntro.png";
     private Color[] pixels;
+    public Text outputText;
     IEnumerator Start()
     {
         Texture2D tex;
@@ -35,18 +37,18 @@ public class LoadImage : MonoBehaviour {
         mnist_net.FeedFoward(ref inputVals);
         mnist_net.GetResults(ref resultVals);
 
-        Debug.Log("Output:");
         int highestID = 0;
-        int highest = 0;
+        double highest = 0.0f;
         for (int i = 0; i < 10; ++i)
         {
             Debug.Log(resultVals[i]);
             if (resultVals[i] > highest)
             {
+                highest = resultVals[i];
                 highestID = i;
             }
         }
-        Debug.Log("found : " + highestID);
+        outputText.text = "Found: " + highestID;
 
     }
 

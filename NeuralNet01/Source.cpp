@@ -45,10 +45,6 @@ int main()
 	//	myNet.backProp(targetValues);
 	//}
 
-	//file for data
-	//ofstream output;
-	//output.open("output.csv");
-
 	//new
 	MNIST_TrainingData mnistTraining("./resources/mnist/train-images.idx3-ubyte", "./resources/mnist/train-labels.idx1-ubyte", 0);//integer to set amount of hidden layers
 
@@ -81,24 +77,16 @@ int main()
 				id = i;
 			}
 		}
-		//output << "achieved output:\t" << std::to_string(resultsVals[id]) << "\n";
 
 		//		tell the net what the outputs should've been
 		mnistTraining.getTargetOutputs(targetVals);
 
-		//for(auto t : targetVals)
-		//{
-		//	if (t > 0)
-		//	{
-		//		output << "expected output:\t" << std::to_string(targetVals[t]) << "\n\n";
-		//	}
-		//}
 
 		MNIST_NET.backProp(targetVals);
 	}
 
 	ofstream finalweights;
-	finalweights.open("finalweights3.txt");
+	finalweights.open("finalweights4.txt");
 
 	auto layers = MNIST_NET.getLayers();
 	int amount = 785;
@@ -120,6 +108,5 @@ int main()
 	}
 	finalweights.close();
 
-	//output.close();
 	cin.get();
 }
