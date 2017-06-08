@@ -8,7 +8,7 @@ class MNIST_TrainingData
 {
 public:
 	MNIST_TrainingData(const std::string imageFile, const std::string labelFile, const int NrOfHiddenLayers);
-	bool endReached(void) { return m_InputCounter >= m_NrOfInputs; }
+	bool endReached(void) const { return m_InputCounter >= m_NrOfInputs; }
 	void getTopology(std::vector<unsigned> &topology) const;
 
 	// Returns the number of input values read from the file:

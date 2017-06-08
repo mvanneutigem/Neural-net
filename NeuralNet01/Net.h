@@ -12,7 +12,7 @@ public:
 	void feedForward(const std::vector<double>& inputVals);
 	void backProp(const std::vector<double>& targetVals);
 	void getResults(std::vector<double>& resultsVals) const;
-	double getRecentAverageError() { return m_recentAverageError; };
+	double getRecentAverageError() const { return m_recentAverageError; };
 
 	std::vector<Layer>& getLayers() { return m_Layers; };
 private:

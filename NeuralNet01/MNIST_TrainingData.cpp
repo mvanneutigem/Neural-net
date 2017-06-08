@@ -51,8 +51,8 @@ unsigned int MNIST_TrainingData::getTargetOutputs(vector<double> &targetOutputVa
 	targetOutputVals.clear();
 
 	const uint8_t output = m_Data.GetCategoryData()[m_OutputCounter];
-	double outputvalue = int(output);// / 10.0f;
-	cout << "expected output: \n";// + std::to_string(outputvalue) << endl;
+	double outputvalue = int(output);
+	cout << "expected output: \n";
 	
 	for(auto i = 0; i < 10; ++i)
 	{
@@ -67,7 +67,6 @@ unsigned int MNIST_TrainingData::getTargetOutputs(vector<double> &targetOutputVa
 			cout << "0\n";
 		}
 	}
-	//targetOutputVals.push_back(outputvalue);
 	++m_OutputCounter;
 
 	return targetOutputVals.size();
